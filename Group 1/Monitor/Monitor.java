@@ -42,24 +42,48 @@ public class Monitor {
 		private Date timestamp;
 	}
 	
-	public void addCar(Car car) {
+	private Monitor() {
+		transactions = new HashMap<ICar, ArrayList<Transaction>>();
+	}
+	
+	public static Monitor getInstance() {
+		if (singletonMonitor == null) {
+			singletonMonitor = new Monitor();
+		}
+		return singletonMonitor;
+	}
+	
+	public void addCar(ICar car) {
 		if (!transactions.containsKey(car)) {
 			transactions.put(car, new ArrayList<Transaction>());
 		}
 	}
 	
-	public void addTransaction(Car car, String message) {
+	public void addTransaction(ICar car, String message) {
 		if (transactions.containsKey(car)) {
 			transactions.get(car).add(new Transaction(message));
 		}
 		updateUI();
 	}
 	
-	public void updateUI() {
-		// TODO: update the UI with the latest transactions
+	public HashMap<ICar, ArrayList<Transaction>> getTransactions() {
+		return transactions;
 	}
 	
-	private HashMap<Car, ArrayList<Transaction>> transactions;
+	public void setMonitorUI(MonitorUI monitorUI) {
+		this.monitorUI = monitorUI;
+	}
+	
+	public void updateUI() {
+		if (monitorUI != null) {
+			monitorUI.notify(this);
+		}
+	}
+	
+	private static Monitor singletonMonitor;
+	
+	private HashMap<ICar, ArrayList<Transaction>> transactions;
 	private static final DateFormat TimestampFormat =
 			new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	private MonitorUI monitorUI;
 }

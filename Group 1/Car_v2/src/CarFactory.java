@@ -7,7 +7,7 @@ public class CarFactory {
 		
 		ICar car = null;
 		if(CarConfiguration.getCarType().equals("default")){
-			car = new Car();
+			car = new CallbackCar();
 		}
 		
 		if(CarConfiguration.getCarControllerType().equals("default")){

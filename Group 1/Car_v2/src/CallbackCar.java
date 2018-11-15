@@ -1,6 +1,12 @@
 
 public class CallbackCar extends Car {
-		
+	
+	public CallbackCar() {
+		super();
+		this.monitor = Monitor.getInstance();
+		System.out.println(monitor == null);
+	}
+	
 	public CallbackCar(Monitor monitor) {
 		super();
 		this.monitor = monitor;
@@ -18,6 +24,7 @@ public class CallbackCar extends Car {
 
 	public void setCurrentFloorNumber(int currentFloorNumber) {
 		super.setCurrentFloorNumber(currentFloorNumber);
+		monitor.addTransaction(this, String.format("Car %d now on floor %d", getCarID(), currentFloorNumber));
 	}
 
 	public void setDoor(IDoor door) {
