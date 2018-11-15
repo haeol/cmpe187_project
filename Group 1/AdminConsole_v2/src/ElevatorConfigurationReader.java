@@ -18,7 +18,7 @@ public class ElevatorConfigurationReader {
 	public static void showElevator() {
 		
 		//Setting layout 
-		JFrame frame = new JFrame("Elevator Simulation System");
+		JFrame frame = new JFrame("Elevator Simulation SystemXD");
 		frame.setLayout(new FlowLayout());
 		JPanel completeFloorPanel = new JPanel();
 		completeFloorPanel.setLayout(new GridBagLayout());
@@ -179,6 +179,8 @@ public class ElevatorConfigurationReader {
 			 
 			frame.add(car.createCar());
 		}
+		setupMonitor(frame);
+		
 		frame.setSize(400*numberOfCars, numberOfFloors * 90);
 		frame.setVisible(true);
 		
@@ -187,6 +189,11 @@ public class ElevatorConfigurationReader {
 	
 	//	car[0].moveUp(9);
 
+	}
+	
+	private static void setupMonitor(JFrame frame) {
+		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Setting up monitor");
+		frame.add(new MonitorUI());
 	}
 
 	public static void main(String[] args){
