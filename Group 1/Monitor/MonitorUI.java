@@ -1,7 +1,9 @@
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
+import javax.swing.text.DefaultCaret;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
@@ -9,7 +11,10 @@ import java.util.ArrayList;
 public class MonitorUI extends JPanel {
 	public MonitorUI() {
 		super(new FlowLayout());
-		textArea = new JTextArea(5, 20);
+		textArea = new JTextArea(Height, Width);
+		DefaultCaret caret = (DefaultCaret)textArea.getCaret();
+		caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+
         textArea.setEditable(false);
         JScrollPane scrollPane = new JScrollPane(textArea);
         add(scrollPane);
@@ -39,4 +44,6 @@ public class MonitorUI extends JPanel {
 	
 	private HashMap<ICar, Integer> lastMessageIndex;
 	private JTextArea textArea;
+	private final static int Width = 50;
+	private final static int Height = 10;
 }

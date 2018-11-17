@@ -1,3 +1,4 @@
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -184,9 +185,6 @@ public class ElevatorConfigurationReader {
 		
 		frame.setSize(400*numberOfCars, numberOfFloors * 90);
 		frame.setVisible(true);
-		
-			
-		
 	
 	//	car[0].moveUp(9);
 
